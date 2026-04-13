@@ -415,6 +415,7 @@
 "Assets/Scripts/Core/CheckersBoard.cs"
 "Assets/Scripts/Core/CheckersGameController.cs"
 "Assets/Scripts/Core/CheckersTypes.cs"
+"Assets/Scripts/SimpleBoardRenderer.cs"
 "Assets/Scripts/View/RuntimeBoardView.cs"
 -langversion:9.0
 /deterministic
