@@ -295,6 +295,7 @@ public class SimpleBoardRenderer : MonoBehaviour
                     piece.transform.parent = transform;
                     piece.transform.position = new Vector3(x, y, -0.2f);
                     piece.transform.localScale = new Vector3(0.7f, 0.1f, 0.7f);
+                    piece.transform.Rotate(90.0f, 0.0f, 0.0f, Space.Self);
 
                     Renderer r = piece.GetComponent<Renderer>();
 
