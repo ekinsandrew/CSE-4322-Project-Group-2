@@ -339,6 +339,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimpleBoardRenderer
   size: 8
   squareSize: 1
+  first: {fileID: 21300000, guid: f4839c70d5d0d25bab87067d534bb40c, type: 3}
+  firstKing: {fileID: 21300000, guid: 337ee0e8a4454935aa553e78f33b49a1, type: 3}
+  second: {fileID: 21300000, guid: 128fa53e406dd9218bd9c4f852acef03, type: 3}
+  secondKing: {fileID: 21300000, guid: be7a154039c7088f6af9ac318d0d3a5d, type: 3}
 --- !u!4 &1967916159
 Transform:
   m_ObjectHideFlags: 0

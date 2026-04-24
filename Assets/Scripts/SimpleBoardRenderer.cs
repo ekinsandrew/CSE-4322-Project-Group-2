@@ -5,6 +5,8 @@ public class SimpleBoardRenderer : MonoBehaviour
 {
     public int size = 8;
     public float squareSize = 1f;
+    
+    public Sprite first, firstKing, second, secondKing;
 
     private GameObject[,] squares;
     private GameObject[,] pieceObjects;
@@ -291,18 +293,17 @@ public class SimpleBoardRenderer : MonoBehaviour
 
                 if (board[x, y] != 0)
                 {
-                    GameObject piece = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                    GameObject piece = new GameObject();
+                    piece.AddComponent<SpriteRenderer>();
                     piece.transform.parent = transform;
                     piece.transform.position = new Vector3(x, y, -0.2f);
-                    piece.transform.localScale = new Vector3(0.7f, 0.1f, 0.7f);
-                    piece.transform.Rotate(90.0f, 0.0f, 0.0f, Space.Self);
 
-                    Renderer r = piece.GetComponent<Renderer>();
-
-                    if (board[x, y] == 1) r.material.color = Color.red;
-                    if (board[x, y] == 2) r.material.color = Color.black;
-                    if (board[x, y] == 3) r.material.color = new Color(1f, 0.5f, 0.5f);
-                    if (board[x, y] == 4) r.material.color = new Color(0.35f, 0.35f, 0.35f);
+                    SpriteRenderer r = piece.GetComponent<SpriteRenderer>();
+                    
+                    if (board[x, y] == 1) r.sprite = first;
+                    if (board[x, y] == 2) r.sprite = second;
+                    if (board[x, y] == 3) r.sprite = firstKing;
+                    if (board[x, y] == 4) r.sprite = secondKing;
 
                     pieceObjects[x, y] = piece;
                 }
