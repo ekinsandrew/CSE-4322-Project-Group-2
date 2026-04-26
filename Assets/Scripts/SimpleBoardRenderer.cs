@@ -291,12 +291,12 @@ public class SimpleBoardRenderer : MonoBehaviour
         board = new int[size, size];
         pieceObjects = new GameObject[size, size];
 
-        for (int y = 7; y < 8; y++)
+        for (int y = 5; y < 8; y++)
             for (int x = 0; x < size; x++)
                 if ((x + y) % 2 == 1)
                     board[x, y] = 2;
 
-        for (int y = 0; y < 1; y++)
+        for (int y = 0; y < 3; y++)
             for (int x = 0; x < size; x++)
                 if ((x + y) % 2 == 1)
                     board[x, y] = 1;
