@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
+using UnityEngine.SceneManagement;
 public class SimpleBoardRenderer : MonoBehaviour
 {
     public int size = 8;
     public float squareSize = 1f;
     
     public Sprite first, firstKing, second, secondKing;
-
+    public GameObject victoryScreen;
     private GameObject[,] squares;
     private GameObject[,] pieceObjects;
     private int[,] board;
@@ -29,8 +30,55 @@ public class SimpleBoardRenderer : MonoBehaviour
         {
             HandleClick();
         }
+        if(CheckVictory() == 1 || CheckVictory() == 2)
+        {
+            victoryScreen.SetActive(true);
+            TextMeshProUGUI theText = victoryScreen.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+            theText.SetText("Player " + CheckVictory() + " has won!");
+        }
     }
 
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void Quit()
+    {
+        Application.Quit();
+    }
+    int CheckVictory()
+    {
+        bool player1Win = true;
+        bool player2Win = true;
+        for (int x = 0; x < size; x++)
+        {
+            for (int y = 0; y < size; y++)
+            {
+                int piece = board[x, y];
+                if(BelongsToPlayer(piece, 1))
+                {
+                   player2Win = false;
+                //    Debug.Log("player 1 piece at" + x + " " + y);
+                }
+                if (BelongsToPlayer(piece, 2))
+                {
+                   player1Win = false;
+                }
+            }
+        }
+        if(player1Win)
+        {
+            return 1;
+        }
+        else if(player2Win)
+        {
+            return 2;
+        }
+        else
+        {
+            return 0;
+        }
+    }
     void HandleClick()
     {
         Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -243,12 +291,12 @@ public class SimpleBoardRenderer : MonoBehaviour
         board = new int[size, size];
         pieceObjects = new GameObject[size, size];
 
-        for (int y = 5; y < 8; y++)
+        for (int y = 7; y < 8; y++)
             for (int x = 0; x < size; x++)
                 if ((x + y) % 2 == 1)
                     board[x, y] = 2;
 
-        for (int y = 0; y < 3; y++)
+        for (int y = 0; y < 1; y++)
             for (int x = 0; x < size; x++)
                 if ((x + y) % 2 == 1)
                     board[x, y] = 1;
